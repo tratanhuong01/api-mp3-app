@@ -1,5 +1,7 @@
 package com.apimp3app.Mp3App.music;
 
+import com.apimp3app.Mp3App.album.Album;
+import com.apimp3app.Mp3App.artist.Artist;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,6 +9,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+@Table(name = "music")
 @Getter
 @Setter
 
@@ -22,9 +25,14 @@ public class Music {
     @Column
     String album;
 
-    @Column
-    String artist;
+    @JoinColumn(name = "id_artist")
+    @ManyToOne
+    Artist artistMusic;
 
+    @JoinColumn(name = "id_album")
+    @ManyToOne
+    Album albumMusic;
+    
     @Column
     String image;
 
